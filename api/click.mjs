@@ -2,4 +2,4 @@
 
 export const config = { runtime: 'edge' }
 
-export const GET = () => Response.json({ date: Date.now() })
+export const POST = () => Response.json({ date: Date.now() })
