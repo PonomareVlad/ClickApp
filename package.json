@@ -1,0 +1,21 @@
+{
+    "author": "Vladislav Ponomarev <PonomareVlad@users.noreply.github.com> (https://PonomareVlad.ru)",
+    "funding": "https://PonomareVlad.ru/donate",
+    "license": "MIT",
+    "scripts": {
+        "start-dev": "vercel dev"
+    },
+    "imports": {
+        "##/*": "./src/*"
+    },
+    "devDependencies": {
+        "prettier": "^3.5.3"
+    },
+    "prettier": {
+        "semi": false,
+        "tabWidth": 4,
+        "singleQuote": true,
+        "arrowParens": "avoid",
+        "trailingComma": "es5"
+    }
+}
