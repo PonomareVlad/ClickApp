@@ -5,8 +5,9 @@
     "scripts": {
         "start-dev": "vercel dev"
     },
-    "imports": {
-        "##/*": "./src/*"
+    "dependencies": {
+        "@vercel/functions": "^2.0.0",
+        "mongo-realm-web-wrapper": "^0.0.6"
     },
     "devDependencies": {
         "prettier": "^3.5.3"

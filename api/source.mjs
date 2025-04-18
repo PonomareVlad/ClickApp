@@ -1,26 +1,29 @@
 // noinspection JSUnusedGlobalSymbols
 
-let balance = 12345
+import { balance } from '../src/mongo.mjs'
 
 export const config = { runtime: 'edge' }
 
-export const GET = () =>
-    new Response(
-        new ReadableStream({
-            start: controller =>
-                setInterval(() => {
-                    const data = JSON.stringify({
-                        date: Date.now(),
-                        balance,
-                    })
-                    controller.enqueue(`data: ${data}\n\n`)
-                }, 1000),
-        }),
-        {
-            headers: {
-                'Content-Type': 'text/event-stream',
-                'Cache-Control': 'no-cache',
-                Connection: 'keep-alive',
-            },
-        }
-    )
+const headers = {
+    Connection: 'keep-alive',
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'text/event-stream',
+}
+
+export const GET = ({ url }) => {
+    const encoder = new TextEncoder()
+    const signal = AbortSignal.timeout(180 * 1000)
+    const id = new URL(url).searchParams.get('id')
+    const stream = new ReadableStream({
+        pull: async controller => {
+            const data = await balance.findOne({ id })
+            const chunk = `data: ${data?.value || 0}\n\n`
+            controller.enqueue(encoder.encode(chunk))
+        },
+        start: controller => {
+            controller.enqueue(encoder.encode('retry: 0\n\n'))
+            signal.addEventListener('abort', () => controller.close())
+        },
+    })
+    return new Response(stream, { headers })
+}
