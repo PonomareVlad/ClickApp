@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 let balance = 12345
 
 export const config = { runtime: 'edge' }
