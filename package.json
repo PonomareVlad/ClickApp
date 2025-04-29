@@ -6,6 +6,7 @@
         "start-dev": "vercel dev"
     },
     "dependencies": {
+        "grammy": "^1.17.1",
         "@vercel/functions": "^2.0.0",
         "mongo-realm-web-wrapper": "^0.0.6"
     },
