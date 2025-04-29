@@ -1,14 +1,17 @@
 import { bot, secretToken as secret_token } from '../src/bot.mjs'
 
+const {
+    CI,
+    VERCEL_URL = 'localhost',
+    VERCEL_BRANCH_URL: hostname = VERCEL_URL,
+} = process.env
+
+if (!CI) process.exit()
+
 await bot.init()
 
 console.info('Info:', bot.botInfo)
 console.info('Secret token:', secret_token)
-
-const {
-    VERCEL_URL = 'localhost',
-    VERCEL_BRANCH_URL: hostname = VERCEL_URL,
-} = process.env
 
 const url = new URL('api/webhook', `https://${hostname}`)
 
