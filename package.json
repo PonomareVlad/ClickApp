@@ -3,7 +3,9 @@
     "funding": "https://PonomareVlad.ru/donate",
     "license": "MIT",
     "scripts": {
-        "start-dev": "vercel dev"
+        "start-dev": "vercel dev",
+        "set-webhook": "node scripts/set-webhook.mjs",
+        "start-polling": "node scripts/start-polling.mjs"
     },
     "dependencies": {
         "grammy": "^1.17.1",
