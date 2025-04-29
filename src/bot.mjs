@@ -7,9 +7,11 @@ export const {
 
 export const bot = new Bot(token)
 
-bot.command('start', ctx => ctx.reply(`Send WebApp URL starting with https://`))
+const safe = bot.errorBoundary(console.error)
 
-bot.on(':text', ctx => {
+safe.command('start', ctx => ctx.reply(`Send WebApp URL starting with https://`))
+
+safe.on(':text', ctx => {
     const url = new URL(ctx.msg.text.trim())
     return ctx.reply(`Click button to open WebApp`, {
         reply_markup: new InlineKeyboard().webApp(url.hostname, url.href),
