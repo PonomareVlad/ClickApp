@@ -1,7 +1,5 @@
-:root, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
+* {
+    cursor: pointer;
     touch-action: none;
     font-family: Helvetica, sans-serif;
 
@@ -11,14 +9,19 @@
     -webkit-user-select: none;
 }
 
-.counter {
+:root, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+main {
     color: white;
     padding: 0;
     width: 100%;
     height: 100%;
     border: none;
     display: flex;
-    cursor: pointer;
     background: none;
     font-size: 8rem;
     font-weight: 200;
@@ -28,7 +31,18 @@
     -webkit-appearance: none;
 }
 
-.counter > #server {
+#server {
     opacity: 0.5;
     font-size: 2rem;
+}
+
+#bonus {
+    top: 2rem;
+    display: none;
+    font-size: 2rem;
+    position: fixed;
+}
+
+#bonus.active {
+    display: initial;
 }

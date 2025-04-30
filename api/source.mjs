@@ -23,6 +23,13 @@ export const GET = ({ url }) => {
         start: controller => {
             controller.enqueue(encoder.encode('retry: 0\n\n'))
             signal.addEventListener('abort', () => controller.close())
+            setTimeout(() => {
+                const chunk = [
+                    `event: bonus\n`,
+                    `data: ${Date.now()}\n\n`,
+                ].join('')
+                controller.enqueue(encoder.encode(chunk))
+            }, 5 * 1000)
         },
     })
     return new Response(stream, { headers })
