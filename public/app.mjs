@@ -1,3 +1,5 @@
+globalThis.Telegram?.WebApp?.requestFullscreen()
+
 const { id = 0 } = globalThis.Telegram?.WebApp?.initDataUnsafe?.user || {}
 const source = new EventSource('api/source?id=' + id)
 const client = document.getElementById('client')
